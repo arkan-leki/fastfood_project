@@ -1,0 +1,109 @@
+import 'package:fast_food/models/foods.dart';
+import 'package:flutter/material.dart';
+
+
+class Top10Item extends StatelessWidget {
+  // final ChildFoodsModel model;
+  final Food food;
+  const Top10Item(this.food, {
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      height: 350,
+      width: MediaQuery.of(context).size.width * .6,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0.0, 4.0),
+              blurRadius: 10.0,
+            )
+          ]
+      ),
+      child: Column(
+        children: <Widget>[
+          Stack(
+            children: [
+              Container(
+                height: 180.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    image: DecorationImage(
+                        image: Image.network(food.image).image,
+                        fit: BoxFit.cover)
+                ),
+
+              ),
+              Positioned(
+                top: 1,
+              right: 1,
+                child: CircleAvatar(
+                    backgroundColor: Colors.grey.withOpacity(0.7),
+                    radius: 25.0,
+                    child: IconButton(icon: Icon(Icons.favorite_border),
+                        color: Colors.white ,
+                        iconSize: 30,
+                        onPressed: ()=>print("favorite_border"))
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10.0,),
+          Text(food.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'lato',
+              fontSize: 20.0,
+              color: Color(0xFF444444),
+            ),),
+          SizedBox(height: 5.0,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(food.subtitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey,
+              ),),
+          ),
+          SizedBox(height: 15.0,),
+          Text(
+            '⭐ ⭐ ⭐ ⭐ ⭐',
+            style: TextStyle(fontSize: 20.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 0.0, top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('IQ', style: TextStyle(
+                    fontSize: 25.0,
+                    //fontFamily: 'lato',
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFFFCA60)),),
+                SizedBox(width: 5.0,),
+                Text('${food.price}',
+                  style: TextStyle(
+                    color: Color(0xFFFFCA60),
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                  ),)
+              ],
+            ),
+          ),
+
+        ],
+      ),
+
+    );
+
+  }
+
+}
