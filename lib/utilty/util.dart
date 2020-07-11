@@ -9,7 +9,4 @@ var transformapi = "transports/?format=json";
 var foodz = "foodz/?format=json";
 var requestz = "requestz/?format=json";
 var phoneid = '';
-List<String> favorites = [];
-List<Food> foods;
-
 var catlist;

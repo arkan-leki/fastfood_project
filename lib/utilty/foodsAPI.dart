@@ -6,8 +6,8 @@ import 'util.dart';
 
 class FoodAPI {
   Future fetchalldata() async {
-    String allCatAPI = apibse + foodz +"&&deleted=false";
-    foods = List<Food>();
+    String allCatAPI = apibse + foodapi;
+    List foods = List<Food>();
 
     var response = await http.get(allCatAPI);
     if (response.statusCode == 200) {
@@ -15,9 +15,7 @@ class FoodAPI {
       for (var data in jsonResponse) {
         Food cat = new Food(
             data['id'].toString(),
-            data['url'],
-            data['category'],
-            data['categoryId'],
+            data['category'].toString(),
             data['categoryWar'],
             data['image'],
             data['sell_price'],
@@ -26,7 +24,11 @@ class FoodAPI {
             data['detiles'],
             data['dateAdd'],
             data['popularity'],
-            data['avgRatings']
+            data['avgRatings'],
+            data['deleted'],
+            data['isDisprice'],
+            data['disprice'],
+            data['dispriceTitle']
             );
         foods.add(cat);
       }

@@ -1,10 +1,11 @@
+import 'package:fast_food/models/Cat.dart';
 import 'package:fast_food/models/parentfoods_model.dart';
 import 'package:flutter/material.dart';
 
 class ParentFoodsItem extends StatelessWidget {
-  final ParentFoodsModel model;
-
-  const ParentFoodsItem(this.model, {
+  // final ParentFoodsModel model;
+  final Cat cat;
+  const ParentFoodsItem(this.cat, {
     Key key,
   }) : super(key: key);
 
@@ -33,7 +34,7 @@ class ParentFoodsItem extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
-                    image: AssetImage(model.imageUrl),
+                    image: Image.network(cat.image).image,
                     fit: BoxFit.cover),
 
             ),
@@ -42,7 +43,7 @@ class ParentFoodsItem extends StatelessWidget {
           SizedBox(height: 10,),
           Column(
             children: [
-              Text(model.title_kurdish,
+              Text(cat.nameKu,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   //fontFamily: 'lato',
@@ -52,7 +53,7 @@ class ParentFoodsItem extends StatelessWidget {
               SizedBox(height: 5.0,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(model.title_english,
+                child: Text(cat.nameEg,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,

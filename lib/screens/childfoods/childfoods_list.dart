@@ -23,6 +23,7 @@ class _ChildFoodsListState extends State<ChildFoodsList> {
             snapshot.hasData) {
           return ListView.builder(
               itemCount: snapshot.data.length,
+              scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 Food food = snapshot.data[index];
                 return new ChildFoodsItem(food);

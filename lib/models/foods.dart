@@ -1,8 +1,6 @@
 class Food {
   String id;
-  String url;
   String category;
-  String categoryId;
   String categoryWar;
   String image;
   String price;
@@ -13,12 +11,13 @@ class Food {
   String popularity;
   String avgRatings;
   bool deleted;
+  bool isDisprice;
+  String disprice;
+  String dispriceTitle;
 
   Food(
       this.id,
-      this.url,
       this.category,
-      this.categoryId,
       this.categoryWar,
       this.image,
       this.price,
@@ -27,5 +26,10 @@ class Food {
       this.detiles,
       this.dateAdd,
       this.popularity,
-      this.avgRatings);
+      this.avgRatings,
+      this.deleted,
+      this.isDisprice,
+      this.disprice,
+      this.dispriceTitle,
+      );
 }

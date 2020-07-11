@@ -6,18 +6,19 @@ class DiscountChildFoodsItem extends StatelessWidget {
   // final ChildFoodsModel model;
   final Food food;
 
-  const DiscountChildFoodsItem(this.food, {
+  const DiscountChildFoodsItem(
+    this.food, {
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection. ltr,
+      textDirection: TextDirection.ltr,
       child: Container(
         width: 350,
         height: 375,
-   color: Colors.white,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Container(
@@ -48,7 +49,6 @@ class DiscountChildFoodsItem extends StatelessWidget {
                           height: 200.0,
                           width: double.infinity,
                           fit: BoxFit.cover,
-
                         ),
                       ),
                       Row(
@@ -59,35 +59,39 @@ class DiscountChildFoodsItem extends StatelessWidget {
                               CircleAvatar(
                                 backgroundColor: Colors.grey.withOpacity(0.7),
                                 radius: 25.0,
-                                child: Icon(Icons.star, color: Colors.amber, size: 30.0,),
+                                child: Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 30.0,
+                                ),
                               ),
                               Positioned(
                                 top: 25,
                                 right: 3,
-                                child: Text("3.5",style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold
-                                ),),
+                                child: Text(
+                                  food.avgRatings.toString(),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
-
                         ],
                       ),
                       Positioned(
                         bottom: 0.0,
                         right: 0,
-                        child:Stack(
+                        child: Stack(
                           children: [
                             Image(
-                              image: AssetImage("assets/images/logodicount.png"),
+                              image:
+                                  AssetImage("assets/images/logodicount.png"),
                               height: 100.0,
                               width: 100.0,
                               fit: BoxFit.cover,
-
                             ),
-
                           ],
                         ),
                       ),
@@ -97,11 +101,11 @@ class DiscountChildFoodsItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        child: _childfoods_discPrince(food.price,food.price),
+                        child: _childfoods_discPrince(food.price, food.price),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: _childfoods_titles(food.title,food.subtitle),
+                        child: _childfoods_titles(food.title, food.subtitle),
                       ),
                     ],
                   )
@@ -112,8 +116,8 @@ class DiscountChildFoodsItem extends StatelessWidget {
         ),
       ),
     );
-
   }
+
   _childfoods_titles(String titlekurdish, String titleenglish) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
@@ -133,24 +137,22 @@ class DiscountChildFoodsItem extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600
-            ),
+                color: Colors.grey.shade600),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 10.0),
-         _discounttimer("12:30:00"),
+          _discounttimer("12:30:00"),
         ],
       ),
     );
   }
 
-  _childfoods_discPrince(String oldprice,String newprice) {
-
-    if(int.parse(newprice)<=0)
+  _childfoods_discPrince(String oldprice, String newprice) {
+    if (int.parse(newprice) <= 0)
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 70),
+        padding: const EdgeInsets.only(left: 10, top: 70),
         child: Text(
-          oldprice+" "+"IQ",
+          oldprice + " " + "IQ",
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -160,11 +162,11 @@ class DiscountChildFoodsItem extends StatelessWidget {
       );
     else
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 30),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Column(
           children: [
             Text(
-              newprice+" "+"IQ",
+              newprice + " " + "IQ",
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 20.0,
@@ -174,13 +176,12 @@ class DiscountChildFoodsItem extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              oldprice+" "+"IQ",
+              oldprice + " " + "IQ",
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.lineThrough,
                 color: Colors.grey.shade600,
-
               ),
               textAlign: TextAlign.center,
             ),
@@ -192,13 +193,16 @@ class DiscountChildFoodsItem extends StatelessWidget {
   _discounttimer(String time) {
     return Row(
       children: [
-        Text(time,style: TextStyle(fontSize :16,color: Colors.green.shade600),
+        Text(
+          time,
+          style: TextStyle(fontSize: 16, color: Colors.green.shade600),
         ),
-        Icon(Icons.timer,color: Colors.blueAccent,size: 20,),
-
+        Icon(
+          Icons.timer,
+          color: Colors.blueAccent,
+          size: 20,
+        ),
       ],
     );
   }
-
-
 }

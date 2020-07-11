@@ -84,7 +84,7 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
               Positioned(
                 bottom: 0.0,
                 left: 20.0,
-                child: _childfoods_discPrince(_food.price,_food.price)
+                child: _childfoods_discPrince(_food.price,_food.disprice)
               ),
               Positioned(
                 bottom: 0.0,

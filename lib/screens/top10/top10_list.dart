@@ -51,9 +51,10 @@ class Top10List extends StatelessWidget {
               snapshot.hasData) {
             return ListView.builder(
                 itemCount: snapshot.data.length,
+                scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   Food food = snapshot.data[index];
-                  return GestureDetector(
+                  return new GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,

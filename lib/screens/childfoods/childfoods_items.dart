@@ -86,7 +86,7 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: _childfoods_discPrince(_food.price,_food.price),
+                      child: _childfoods_discPrince(_food.price,_food.disprice)
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
