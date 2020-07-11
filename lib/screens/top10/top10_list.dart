@@ -45,7 +45,7 @@ class Top10List extends StatelessWidget {
 
     return Center(
       child: FutureBuilder(
-        future: _foodAPI.fetchalldata(),
+        future: _foodAPI.fetchalldataByRate(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {

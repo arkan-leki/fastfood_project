@@ -10,14 +10,12 @@ class ChildFoodsItem extends StatefulWidget {
 
   @override
   _ChildFoodsItemState createState() => _ChildFoodsItemState(foodModel);
-
 }
 
 class _ChildFoodsItemState extends State<ChildFoodsItem> {
   // ChildFoodsModel model;
   Food _food;
   _ChildFoodsItemState(this._food);
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,6 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                         height: 200.0,
                         width: double.infinity,
                         fit: BoxFit.cover,
-
                       ),
                     ),
                     Row(
@@ -57,27 +54,33 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                             CircleAvatar(
                               backgroundColor: Colors.grey.withOpacity(0.7),
                               radius: 25.0,
-                              child: Icon(Icons.star, color: Colors.amber, size: 30.0,),
+                              child: Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 50.0,
+                              ),
                             ),
                             Positioned(
-                              top: 25,
-                              right: 3,
-                              child: Text(_food.avgRatings.toString(),style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold
-                              ),),
+                              top: 15,
+                              right: 15,
+                              child: Text(
+                                _food.avgRatings.toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ],
                         ),
                         CircleAvatar(
-                          backgroundColor: Colors.grey.withOpacity(0.7),
-                          radius: 25.0,
-                          child: IconButton(icon: Icon(Icons.favorite_border),
-                              color: Colors.white ,
-                              iconSize: 30,
-                              onPressed: ()=>print("favorite_border"))
-                        ),
+                            backgroundColor: Colors.grey.withOpacity(0.7),
+                            radius: 25.0,
+                            child: IconButton(
+                                icon: Icon(Icons.favorite_border),
+                                color: Colors.white,
+                                iconSize: 30,
+                                onPressed: () => print("favorite_border"))),
                       ],
                     ),
                   ],
@@ -86,11 +89,11 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      child: _childfoods_discPrince(_food.price,_food.disprice)
-                    ),
+                        child: _childfoods_discPrince(
+                            _food.price, _food.disprice)),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: _childfoods_titles(_food.title,_food.subtitle),
+                      child: _childfoods_titles(_food.title, _food.subtitle),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -101,15 +104,17 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                             border: new Border.all(color: Colors.green),
                           ),
-                          child:   IconButton(
+                          child: IconButton(
                             //    padding: EdgeInsets.only(left: 10.0),
                             onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ChildFoodsView(_food))
-                            ),
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChildFoodsView(_food))),
                             icon: Icon(Icons.add),
                             iconSize: 20.0,
                             color: Colors.green,
@@ -125,8 +130,8 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
         ),
       ),
     );
-
   }
+
   _childfoods_titles(String titlekurdish, String titleenglish) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
@@ -146,8 +151,7 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
             style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600
-            ),
+                color: Colors.grey.shade600),
             textAlign: TextAlign.center,
           ),
         ],
@@ -157,9 +161,9 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
 
   _childfoods_Prince(String price) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 70),
+      padding: const EdgeInsets.only(left: 10, top: 70),
       child: Text(
-        "IQ"+" "+price,
+        "IQ" + " " + price,
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
@@ -169,13 +173,12 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
     );
   }
 
-  _childfoods_discPrince(String oldprice,String newprice) {
-
-    if(int.parse(newprice)<=0)
+  _childfoods_discPrince(String oldprice, String newprice) {
+    if (newprice != "False")
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 70),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(
-          oldprice+" "+"IQ",
+          oldprice + " " + "IQ",
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -184,34 +187,32 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
         ),
       );
     else
-    return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 30),
-      child: Column(
-        children: [
-          Text(
-            newprice+" "+"IQ",
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+      return Padding(
+        padding: const EdgeInsets.only(left: 10, top: 30),
+        child: Column(
+          children: [
+            Text(
+              newprice + " " + "IQ",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 10.0),
-          Text(
-            oldprice+" "+"IQ",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.lineThrough,
-              color: Colors.grey.shade600,
-
+            SizedBox(height: 10.0),
+            Text(
+              oldprice + " " + "IQ",
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.lineThrough,
+                color: Colors.grey.shade600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
   }
-
 }

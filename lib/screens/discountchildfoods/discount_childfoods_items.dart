@@ -62,16 +62,16 @@ class DiscountChildFoodsItem extends StatelessWidget {
                                 child: Icon(
                                   Icons.star,
                                   color: Colors.amber,
-                                  size: 30.0,
+                                  size: 50.0,
                                 ),
                               ),
                               Positioned(
-                                top: 25,
-                                right: 3,
+                                top: 15,
+                                right: 15,
                                 child: Text(
                                   food.avgRatings.toString(),
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 20,
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -107,6 +107,12 @@ class DiscountChildFoodsItem extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: _childfoods_titles(food.title, food.subtitle),
                       ),
+                    ],
+                  )
+                  ,
+                  Column(
+                    children: <Widget>[
+                      Text(food.detiles)
                     ],
                   )
                 ],
@@ -148,9 +154,9 @@ class DiscountChildFoodsItem extends StatelessWidget {
   }
 
   _childfoods_discPrince(String oldprice, String newprice) {
-    if (int.parse(newprice) <= 0)
+    if (newprice!="False")
       return Padding(
-        padding: const EdgeInsets.only(left: 10, top: 70),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(
           oldprice + " " + "IQ",
           style: TextStyle(
