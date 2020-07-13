@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class ChildFoodsListView extends StatelessWidget {
   final String title;
 
+  final String catId;
+
   const ChildFoodsListView(
-    this.title, {
+    this.title, this.catId, {
     Key key,
   }) : super(key: key);
 
@@ -25,7 +27,7 @@ class ChildFoodsListView extends StatelessWidget {
       body: SingleChildScrollView(
           child: Container(
               height: MediaQuery.of(context).size.height,
-              child: ChildFoodsList())),
+              child: ChildFoodsList(catId))),
     );
   }
 }

@@ -5,20 +5,27 @@ import 'package:flutter/material.dart';
 import 'childfoods_items.dart';
 
 class ChildFoodsList extends StatefulWidget {
+  final String catId;
+
+  ChildFoodsList(this.catId);
+
   // List<ChildFoodsModel> list = new List();
 
   @override
-  _ChildFoodsListState createState() => _ChildFoodsListState();
+  _ChildFoodsListState createState() => _ChildFoodsListState(this.catId);
 }
 
 class _ChildFoodsListState extends State<ChildFoodsList> {
+  String catId;
+  _ChildFoodsListState(this.catId);
+
   FoodAPI _foodAPI = FoodAPI();
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FutureBuilder(
-        future: _foodAPI.fetchalldata(),
+        future: _foodAPI.fetchalldataByID(catId),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {

@@ -7,7 +7,7 @@ var specifyapi = "specifyz/?format=json";
 var requestdetailapi = "request_details/?format=json";
 var transformapi = "transports/?format=json";
 var foodz = "foodz/?format=json";
-var customerApi = "customers/";
+var customerApi = "customers/?format=json";
 var requestz = "requestz/?format=json";
 var phoneid = '';
 var catlist;

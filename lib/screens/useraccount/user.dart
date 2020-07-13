@@ -1,5 +1,4 @@
 import 'package:fast_food/models/UserModel.dart';
-import 'package:fast_food/screens/Drawer/drawer_list.dart';
 import 'package:fast_food/utilty/customerAPI.dart';
 import 'package:fast_food/utilty/style.dart';
 import 'package:flutter/cupertino.dart';
@@ -46,89 +45,84 @@ class _UserState extends State<User> {
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasData) {
-                  return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        UserModel userModel = snapshot.data[index];
-                        return Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              child: CircleAvatar(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black26,
-                                          offset: Offset(0.0, 4.0),
-                                          blurRadius: 10.0,
-                                        )
-                                      ],
-                                      image: new DecorationImage(
-                                        image:
-                                            new Image.network(userModel.image)
-                                                .image,
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                radius: 70,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "ناو",
-                                    style: userprofilestyle,
-                                  ),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(userModel.name),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text("ئیمەیڵ", style: userprofilestyle),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(userModel.email),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text("ژ.مۆبایل", style: userprofilestyle),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(userModel.phone),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text("وشەی تێپەڕ", style: userprofilestyle),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(userModel.password),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Divider(
-                                    color: Colors.grey,
+                  print(snapshot.data[0]);
+                  UserModel userModel = snapshot.data[0];
+                  return Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: CircleAvatar(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(0.0, 4.0),
+                                    blurRadius: 10.0,
                                   )
                                 ],
-                              ),
+                                image: new DecorationImage(
+                                  image:
+                                      new Image.network(userModel.image).image,
+                                  fit: BoxFit.fill,
+                                )),
+                          ),
+                          radius: 70,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "ناو",
+                              style: userprofilestyle,
                             ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(userModel.name),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text("ئیمەیڵ", style: userprofilestyle),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(userModel.email),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text("ژ.مۆبایل", style: userprofilestyle),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(userModel.phone),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text("وشەی تێپەڕ", style: userprofilestyle),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(userModel.password),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                            )
                           ],
-                        );
-                      });
+                        ),
+                      ),
+                    ],
+                  );
                 } else if (snapshot.hasError) {
                   throw snapshot.error;
                 }

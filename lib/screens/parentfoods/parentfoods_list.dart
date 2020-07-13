@@ -61,7 +61,7 @@ class ParentFoodsList extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ChildFoodsListView(
-                                  "${cat.nameEg} / ${cat.nameKu}")),
+                                  "${cat.nameEg} / ${cat.nameKu}", cat.id)),
                         );
                       },
                       child: ParentFoodsItem(cat));

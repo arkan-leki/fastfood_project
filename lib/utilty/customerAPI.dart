@@ -33,7 +33,8 @@ class CustomerAPI {
   }
 
   Future fetchalldataById() async {
-    String allCatAPI = apibse + customerApi + "&phoneId=\"$phoneid\"";
+    String allCatAPI = apibse + customerApi + "&phoneid=$phoneid";
+    print(allCatAPI);
     List foods = List<UserModel>();
 
     var response = await http.get(allCatAPI);
