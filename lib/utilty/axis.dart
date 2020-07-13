@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
-var axis=Axis.horizontal;
+var axis = Axis.horizontal;

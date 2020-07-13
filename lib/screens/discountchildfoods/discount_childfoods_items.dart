@@ -69,10 +69,12 @@ class DiscountChildFoodsItem extends StatelessWidget {
                                 top: 15,
                                 right: 15,
                                 child: Text(
-                                  food.avgRatings.toString(),
+                                  food.avgRatings.toString() == "null"
+                                      ? "0.0"
+                                      : food.avgRatings.toString(),
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
+                                      fontSize: 17,
+                                      color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -105,16 +107,11 @@ class DiscountChildFoodsItem extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: _childfoods_titles(food.title, food.subtitle),
+                        child: _childfoods_titles(
+                            food.title, food.subtitle, food.dispriceDate),
                       ),
                     ],
-                  )
-                  ,
-                  Column(
-                    children: <Widget>[
-                      Text(food.detiles)
-                    ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -124,7 +121,7 @@ class DiscountChildFoodsItem extends StatelessWidget {
     );
   }
 
-  _childfoods_titles(String titlekurdish, String titleenglish) {
+  _childfoods_titles(String titlekurdish, String titleenglish, String time) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: Column(
@@ -147,14 +144,14 @@ class DiscountChildFoodsItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 10.0),
-          _discounttimer("12:30:00"),
+          _discounttimer(time),
         ],
       ),
     );
   }
 
   _childfoods_discPrince(String oldprice, String newprice) {
-    if (newprice!="False")
+    if (newprice == "False")
       return Padding(
         padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(

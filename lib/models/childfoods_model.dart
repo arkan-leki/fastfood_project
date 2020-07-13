@@ -5,6 +5,7 @@ class ChildFoodsModel {
   String price;
   String dicprice;
   String description;
+
   //List<String>screenshots;
 
   ChildFoodsModel(this.titlekurdish, this.titleenglish, this.price,

@@ -1,5 +1,4 @@
-class DeliveryCardModel{
-
+class DeliveryCardModel {
   String castusername;
   String castphonenumber;
   String castemali;
@@ -16,8 +15,6 @@ class DeliveryCardModel{
 
   //List<String>screenshots;
 
-
-
   DeliveryCardModel(
       this.castusername,
       this.castphonenumber,
@@ -31,8 +28,5 @@ class DeliveryCardModel{
       this.pricelist,
       this.discount,
       this.delivery,
-      this.totalprice
-      );
-
-
+      this.totalprice);
 }

@@ -14,22 +14,24 @@ class Food {
   bool isDisprice;
   String disprice;
   String dispriceTitle;
+  String dispriceDate;
 
   Food(
-      this.id,
-      this.category,
-      this.categoryWar,
-      this.image,
-      this.price,
-      this.title,
-      this.subtitle,
-      this.detiles,
-      this.dateAdd,
-      this.popularity,
-      this.avgRatings,
-      this.deleted,
-      this.isDisprice,
-      this.disprice,
-      this.dispriceTitle,
-      );
+    this.id,
+    this.category,
+    this.categoryWar,
+    this.image,
+    this.price,
+    this.title,
+    this.subtitle,
+    this.detiles,
+    this.dateAdd,
+    this.popularity,
+    this.avgRatings,
+    this.deleted,
+    this.isDisprice,
+    this.disprice,
+    this.dispriceTitle,
+    this.dispriceDate,
+  );
 }

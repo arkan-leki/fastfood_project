@@ -7,7 +7,7 @@ import 'package:fast_food/utilty/foodsAPI.dart';
 import 'package:flutter/material.dart';
 
 class Top10List extends StatelessWidget {
-  List<ChildFoodsModel> list = new List();
+//  List<ChildFoodsModel> list = new List();
 
   @override
   Widget build(BuildContext context) {

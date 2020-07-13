@@ -1,23 +1,21 @@
-import 'package:fast_food/models/childfoods_model.dart';
 import 'package:fast_food/models/foods.dart';
 import 'package:fast_food/screens/childfoods/childfoods_view.dart';
 import 'package:flutter/material.dart';
 
-import 'favourite_view.dart';
-
 class FavouritesItem extends StatefulWidget {
   // ChildFoodsModel model;
   final Food food;
+
   FavouritesItem(this.food);
 
   @override
   _FavouritesItemState createState() => _FavouritesItemState(food);
-
 }
 
 class _FavouritesItemState extends State<FavouritesItem> {
   // ChildFoodsModel model;
   Food _food;
+
   _FavouritesItemState(this._food);
 
   @override
@@ -49,7 +47,6 @@ class _FavouritesItemState extends State<FavouritesItem> {
                           height: 200.0,
                           width: double.infinity,
                           fit: BoxFit.cover,
-
                         ),
                       ),
                       Row(
@@ -60,27 +57,33 @@ class _FavouritesItemState extends State<FavouritesItem> {
                               CircleAvatar(
                                 backgroundColor: Colors.grey.withOpacity(0.7),
                                 radius: 25.0,
-                                child: Icon(Icons.star, color: Colors.amber, size: 30.0,),
+                                child: Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 30.0,
+                                ),
                               ),
                               Positioned(
                                 top: 25,
                                 right: 3,
-                                child: Text("3.5",style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold
-                                ),),
+                                child: Text(
+                                  "3.5",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
                           CircleAvatar(
-                            backgroundColor: Colors.grey.withOpacity(0.7),
-                            radius: 25.0,
-                            child: IconButton(icon: Icon(Icons.favorite_border),
-                                color: Colors.white ,
-                                iconSize: 30,
-                                onPressed: ()=>print("favorite_border"))
-                          ),
+                              backgroundColor: Colors.grey.withOpacity(0.7),
+                              radius: 25.0,
+                              child: IconButton(
+                                  icon: Icon(Icons.favorite_border),
+                                  color: Colors.white,
+                                  iconSize: 30,
+                                  onPressed: () => print("favorite_border"))),
                         ],
                       ),
                     ],
@@ -89,25 +92,28 @@ class _FavouritesItemState extends State<FavouritesItem> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        child: _childfoods_discPrince(_food.price,_food.disprice),
+                        child:
+                            _childfoods_discPrince(_food.price, _food.disprice),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: _childfoods_titles(_food.title,_food.subtitle),
+                        child: _childfoods_titles(_food.title, _food.subtitle),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                             border: new Border.all(color: Colors.green),
                           ),
-                          child:   IconButton(
+                          child: IconButton(
                             //    padding: EdgeInsets.only(left: 10.0),
                             onPressed: () => Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ChildFoodsView(_food)),
+                              MaterialPageRoute(
+                                  builder: (context) => ChildFoodsView(_food)),
                             ),
                             icon: Icon(Icons.add),
                             iconSize: 30.0,
@@ -124,8 +130,8 @@ class _FavouritesItemState extends State<FavouritesItem> {
         ),
       ),
     );
-
   }
+
   _childfoods_titles(String titlekurdish, String titleenglish) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
@@ -145,8 +151,7 @@ class _FavouritesItemState extends State<FavouritesItem> {
             style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600
-            ),
+                color: Colors.grey.shade600),
             textAlign: TextAlign.center,
           ),
         ],
@@ -156,9 +161,9 @@ class _FavouritesItemState extends State<FavouritesItem> {
 
   _childfoods_Prince(String price) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 70),
+      padding: const EdgeInsets.only(left: 10, top: 70),
       child: Text(
-        "IQ"+" "+price,
+        "IQ" + " " + price,
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
@@ -168,13 +173,12 @@ class _FavouritesItemState extends State<FavouritesItem> {
     );
   }
 
-  _childfoods_discPrince(String oldprice,String newprice) {
-
-    if(newprice!="False")
+  _childfoods_discPrince(String oldprice, String newprice) {
+    if (newprice != "False")
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 30),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(
-          oldprice+" "+"IQ",
+          oldprice + " " + "IQ",
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -183,34 +187,32 @@ class _FavouritesItemState extends State<FavouritesItem> {
         ),
       );
     else
-    return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 30),
-      child: Column(
-        children: [
-          Text(
-            newprice+" "+"IQ",
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+      return Padding(
+        padding: const EdgeInsets.only(left: 10, top: 30),
+        child: Column(
+          children: [
+            Text(
+              newprice + " " + "IQ",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 10.0),
-          Text(
-            oldprice+" "+"IQ",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.lineThrough,
-              color: Colors.grey.shade600,
-
+            SizedBox(height: 10.0),
+            Text(
+              oldprice + " " + "IQ",
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.lineThrough,
+                color: Colors.grey.shade600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
   }
-
 }

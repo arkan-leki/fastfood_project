@@ -1,11 +1,12 @@
-import 'package:flutter/widgets.dart';
+
 
 class UserModel {
-   String firstname;
-   String secondname;
-   String email;
-   String imageUrlProfile;
-   String imageUrlBackground;
+  String firstname;
+  String secondname;
+  String email;
+  String imageUrlProfile;
+  String imageUrlBackground;
+
   UserModel({
     this.firstname,
     this.secondname,

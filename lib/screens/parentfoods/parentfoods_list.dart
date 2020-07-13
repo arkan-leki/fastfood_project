@@ -1,10 +1,7 @@
 import 'package:fast_food/models/Cat.dart';
 import 'package:fast_food/models/parentfoods_model.dart';
-import 'package:fast_food/screens/childfoods/childfoods_items.dart';
 import 'package:fast_food/screens/childfoods/childfoods_list_view.dart';
-import 'package:fast_food/screens/childfoods/childfoods_view.dart';
 import 'package:fast_food/utilty/CatsAPI.dart';
-import 'package:fast_food/utilty/axis.dart';
 import 'package:flutter/material.dart';
 
 import 'parentfoods_items.dart';
@@ -63,7 +60,8 @@ class ParentFoodsList extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ChildFoodsListView("${cat.nameEg} / ${cat.nameKu}")),
+                              builder: (context) => ChildFoodsListView(
+                                  "${cat.nameEg} / ${cat.nameKu}")),
                         );
                       },
                       child: ParentFoodsItem(cat));

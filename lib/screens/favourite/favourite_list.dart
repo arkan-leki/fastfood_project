@@ -1,18 +1,12 @@
-import 'package:fast_food/models/childfoods_model.dart';
 import 'package:fast_food/models/foods.dart';
-import 'package:fast_food/models/parentfoods_model.dart';
 import 'package:fast_food/utilty/foodsAPI.dart';
 import 'package:flutter/material.dart';
 
 import 'favourite_items.dart';
-import 'favourite_view.dart';
 
 class FavouritesList extends StatelessWidget {
-
-  List<ChildFoodsModel> list = new List();
+//  List<ChildFoodsModel> list = new List();
   FoodAPI _foodAPI = FoodAPI();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,28 +30,26 @@ class FavouritesList extends StatelessWidget {
 
     // );
 
-    return Center(child: FutureBuilder(
-      future: _foodAPI.fetchalldata(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
-          return ListView.builder(
-              itemCount: snapshot.data.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                Food food = snapshot.data[index];
-                return new FavouritesItem(food);
-              });
-        } else if (snapshot.hasError) {
-          throw snapshot.error;
-        }
-        // By default, show a loading spinner.
-        return CircularProgressIndicator();
-      },
-    ),
+    return Center(
+      child: FutureBuilder(
+        future: _foodAPI.fetchalldata(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  Food food = snapshot.data[index];
+                  return new FavouritesItem(food);
+                });
+          } else if (snapshot.hasError) {
+            throw snapshot.error;
+          }
+          // By default, show a loading spinner.
+          return CircularProgressIndicator();
+        },
+      ),
     );
   }
-
 }
-
-

@@ -1,38 +1,46 @@
-
-import 'package:fast_food/models/wherhouse_model.dart';
+import 'package:fast_food/models/whorehouse.dart';
+import 'package:fast_food/screens/home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class WhereHouseItem extends StatelessWidget {
-  final WhereHouseModel model;
+  final Whorehouse model;
 
-  const WhereHouseItem(this.model, {
+  const WhereHouseItem(
+    this.model, {
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child:  Column(
-        children: <Widget>[
-          Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: new DecorationImage(
-                  image: new AssetImage(model.Urlimage),
-                  fit: BoxFit.cover,
-                )
+    return Column(
+      children: <Widget>[
+        Container(
+          width: 125,
+          height: 125,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: new DecorationImage(
+                image: new Image.network(model.image).image,
+                fit: BoxFit.cover,
+              )),
+          child: ListTile(
+            leading: CircleAvatar(
+              child: Text(model.items),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
           ),
-          SizedBox(height: 15,),
-          Text(model.title)
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Text(model.title)
+      ],
     );
-
   }
-
 }

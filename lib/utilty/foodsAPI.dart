@@ -1,7 +1,9 @@
 import 'dart:convert' as convert;
 import 'dart:convert';
+
 import 'package:fast_food/models/foods.dart';
 import 'package:http/http.dart' as http;
+
 import 'util.dart';
 
 class FoodAPI {
@@ -14,22 +16,23 @@ class FoodAPI {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
       for (var data in jsonResponse) {
         Food cat = new Food(
-            data['id'].toString(),
-            data['category'].toString(),
-            data['categoryWar'],
-            data['image'],
-            data['sell_price'],
-            data['title'],
-            data['subtitle'],
-            data['detiles'],
-            data['dateAdd'],
-            data['popularity'],
-            data['avg_ratings'].toString() == "null" ? "0" : data['avg_ratings'],
-            data['deleted'],
-            data['isDispriced'],
-            data['disprice'].toString(),
-            data['dispriceTitle'].toString()
-            );
+          data['id'].toString(),
+          data['category'].toString(),
+          data['categoryWar'],
+          data['image'],
+          data['sell_price'],
+          data['title'],
+          data['subtitle'],
+          data['detiles'],
+          data['dateAdd'],
+          data['popularity'],
+          data['avg_ratings'].toString() == "null" ? "0" : data['avg_ratings'],
+          data['deleted'],
+          data['isDispriced'],
+          data['disprice'].toString(),
+          data['dispriceTitle'].toString(),
+          data['dispriceDate'].toString(),
+        );
         foods.add(cat);
       }
     }
@@ -44,23 +47,24 @@ class FoodAPI {
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
       for (var data in jsonResponse) {
-        if( data['isDispriced']==true) {
+        if (data['isDispriced'] == true) {
           Food cat = new Food(
-              data['id'].toString(),
-              data['category'].toString(),
-              data['categoryWar'],
-              data['image'],
-              data['sell_price'],
-              data['title'],
-              data['subtitle'],
-              data['detiles'],
-              data['dateAdd'],
-              data['popularity'],
-              data['avg_ratings'],
-              data['deleted'],
-              data['isDispriced'],
-              data['disprice'].toString(),
-              data['dispriceTitle'].toString()
+            data['id'].toString(),
+            data['category'].toString(),
+            data['categoryWar'],
+            data['image'],
+            data['sell_price'],
+            data['title'],
+            data['subtitle'],
+            data['detiles'],
+            data['dateAdd'],
+            data['popularity'],
+            data['avg_ratings'],
+            data['deleted'],
+            data['isDispriced'],
+            data['disprice'].toString(),
+            data['dispriceTitle'].toString(),
+            data['dispriceDate'].toString(),
           );
           foods.add(cat);
         }
@@ -78,21 +82,22 @@ class FoodAPI {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
       for (var data in jsonResponse) {
         Food cat = new Food(
-            data['id'].toString(),
-            data['category'].toString(),
-            data['categoryWar'],
-            data['image'],
-            data['sell_price'],
-            data['title'],
-            data['subtitle'],
-            data['detiles'],
-            data['dateAdd'],
-            data['popularity'],
-            data['avg_ratings'],
-            data['deleted'],
-            data['isDispriced'],
-            data['disprice'].toString(),
-            data['dispriceTitle'].toString()
+          data['id'].toString(),
+          data['category'].toString(),
+          data['categoryWar'],
+          data['image'],
+          data['sell_price'],
+          data['title'],
+          data['subtitle'],
+          data['detiles'],
+          data['dateAdd'],
+          data['popularity'],
+          data['avg_ratings'],
+          data['deleted'],
+          data['isDispriced'],
+          data['disprice'].toString(),
+          data['dispriceTitle'].toString(),
+          data['dispriceDate'].toString(),
         );
         foods.add(cat);
       }

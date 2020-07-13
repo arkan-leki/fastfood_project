@@ -16,25 +16,26 @@ class _ChildFoodsListState extends State<ChildFoodsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: FutureBuilder(
-      future: _foodAPI.fetchalldata(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
-          return ListView.builder(
-              itemCount: snapshot.data.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                Food food = snapshot.data[index];
-                return new ChildFoodsItem(food);
-              });
-        } else if (snapshot.hasError) {
-          throw snapshot.error;
-        }
-        // By default, show a loading spinner.
-        return CircularProgressIndicator();
-      },
-    ),
+    return Center(
+      child: FutureBuilder(
+        future: _foodAPI.fetchalldata(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  Food food = snapshot.data[index];
+                  return new ChildFoodsItem(food);
+                });
+          } else if (snapshot.hasError) {
+            throw snapshot.error;
+          }
+          // By default, show a loading spinner.
+          return CircularProgressIndicator();
+        },
+      ),
     );
 
     // list.add(new ChildFoodsModel("پیتزا","pizza","15000","0","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","assets/images/food1.jpg"));

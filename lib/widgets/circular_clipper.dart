@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CircularClipper extends CustomClipper<Path> {
-
   @override
   Path getClip(Size size) {
     var path = Path();

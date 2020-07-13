@@ -1,4 +1,3 @@
-import 'package:fast_food/models/childfoods_model.dart';
 import 'package:fast_food/models/foods.dart';
 import 'package:fast_food/screens/childfoods/childfoods_view.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 class ChildFoodsItem extends StatefulWidget {
   // ChildFoodsModel model;
   final Food foodModel;
+
   ChildFoodsItem(this.foodModel);
 
   @override
@@ -15,6 +15,7 @@ class ChildFoodsItem extends StatefulWidget {
 class _ChildFoodsItemState extends State<ChildFoodsItem> {
   // ChildFoodsModel model;
   Food _food;
+
   _ChildFoodsItemState(this._food);
 
   @override
@@ -174,7 +175,7 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
   }
 
   _childfoods_discPrince(String oldprice, String newprice) {
-    if (newprice != "False")
+    if (newprice == "False")
       return Padding(
         padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(

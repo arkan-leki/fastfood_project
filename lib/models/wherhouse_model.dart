@@ -1,11 +1,6 @@
-class WhereHouseModel{
-
+class WhereHouseModel {
   String title;
   String Urlimage;
 
-
-
-  WhereHouseModel(this.title,this.Urlimage);
-
-
+  WhereHouseModel(this.title, this.Urlimage);
 }

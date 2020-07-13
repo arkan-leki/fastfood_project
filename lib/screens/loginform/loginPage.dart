@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../main_screen.dart';
 import 'Widget/bezierContainer.dart';
 
-
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
 
@@ -15,8 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   Widget _entryField(String title, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -43,38 +40,37 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
-          ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: Container(
         width: MediaQuery.of(context).size.width,
-        child: FlatButton(
-          child: Text(
-            'چوونە ژوورەوە',
-            style: TextStyle(fontSize: 20, color: Colors.white),
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: FlatButton(
+            child: Text(
+              'چوونە ژوورەوە',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MainScreen()),
+              );
+            },
           ),
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MainScreen()),
-            );
-          },
-        ),
-      )
-    );
+        ));
   }
 
   Widget _divider() {
@@ -157,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
   Widget _googleButton() {
     return Container(
       height: 50,
@@ -204,6 +201,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
   Widget _createAccountLabel() {
     return InkWell(
       onTap: () {
@@ -238,14 +236,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _logo(String logoImagepath) {
-    return   Container(
+    return Container(
       padding: EdgeInsets.all(10),
       child: CircleAvatar(
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               color: Colors.white,
-
               boxShadow: [
                 BoxShadow(
                   color: Colors.black26,
@@ -256,9 +253,7 @@ class _LoginPageState extends State<LoginPage> {
               image: new DecorationImage(
                 image: new AssetImage(logoImagepath),
                 fit: BoxFit.cover,
-
-              )
-          ),
+              )),
         ),
         radius: 70,
       ),
@@ -287,8 +282,7 @@ class _LoginPageState extends State<LoginPage> {
             Positioned(
                 top: -height * .15,
                 right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer()
-          ),
+                child: BezierContainer()),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
@@ -318,7 +312,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-
           ],
         ),
       )),

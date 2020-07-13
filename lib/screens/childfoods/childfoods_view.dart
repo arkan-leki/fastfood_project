@@ -1,28 +1,27 @@
-
-import 'package:fast_food/models/childfoods_model.dart';
 import 'package:fast_food/models/foods.dart';
-import 'package:flutter/material.dart';
 import 'package:fast_food/widgets/circular_clipper.dart';
+import 'package:flutter/material.dart';
 
 import 'sizechildfoods/sizechildfoods_list.dart';
 
 class ChildFoodsView extends StatefulWidget {
   // ChildFoodsModel model;
   final Food food;
+
   ChildFoodsView(this.food);
 
   @override
   _ChildFoodsViewState createState() => _ChildFoodsViewState(food);
-
-
 }
 
 class _ChildFoodsViewState extends State<ChildFoodsView> {
   Food _food;
+
   // ChildFoodsModel model;
   _ChildFoodsViewState(this._food);
 
-  int _counter=1;
+  int _counter = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +33,7 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
               Container(
                 transform: Matrix4.translationValues(0.0, -50.0, 0.0),
                 child: Hero(
-                  tag: "assets/images/food1.jpg",
+                  tag: _food.image.toString(),
                   child: ClipShadowPath(
                     clipper: CircularClipper(),
                     shadow: Shadow(blurRadius: 20.0),
@@ -64,32 +63,30 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
                   CircleAvatar(
                       backgroundColor: Colors.grey.withOpacity(0.7),
                       radius: 25.0,
-                      child: IconButton(icon: Icon(Icons.favorite_border),
-                           color: Colors.white,
-                          iconSize: 30,
+                      child: IconButton(
+                        icon: Icon(Icons.favorite_border),
+                        color: Colors.white,
+                        iconSize: 30,
                         onPressed: () {
-                        /*
+                          /*
                           if( ids.contains( position ) ){
                             ids.remove(position);
                           }else{
                             ids.add(position);
                           }*/
                         },
-                         // color: ( ids.contains(position) ) ? Colors.white : Colors.red,
-                      )
-                  ),
-
+                        // color: ( ids.contains(position) ) ? Colors.white : Colors.red,
+                      )),
                 ],
               ),
               Positioned(
-                bottom: 0.0,
-                left: 20.0,
-                child: _childfoods_discPrince(_food.price,_food.disprice)
-              ),
+                  bottom: 0.0,
+                  left: 20.0,
+                  child: _childfoods_discPrince(_food.price, _food.disprice)),
               Positioned(
                 bottom: 0.0,
                 right: 25.0,
-                child: _childfoods_titles(_food.title,_food.subtitle),
+                child: _childfoods_titles(_food.title, _food.subtitle),
               ),
             ],
           ),
@@ -104,13 +101,14 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
                   children: [
                     Container(
                       child: FlatButton(
-                       // icon: Icon(Icons.shopping_cart,color: Colors.pink.shade600,),
-                        child:  Text('زیادکردن بۆ لیست',style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                          fontWeight: FontWeight.bold
+                        // icon: Icon(Icons.shopping_cart,color: Colors.pink.shade600,),
+                        child: Text(
+                          'زیادکردن بۆ لیست',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
                         ),
-                       ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32),
                           side: BorderSide(color: Colors.pink.shade600),
@@ -119,35 +117,33 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
                       ),
                     ),
                     Spacer(),
-                    IconButton(icon: Icon(Icons.add_circle),
-                        color: Colors.green.shade600 ,
+                    IconButton(
+                        icon: Icon(Icons.add_circle),
+                        color: Colors.green.shade600,
                         iconSize: 30,
-                   onPressed: _incrementCounter),
+                        onPressed: _incrementCounter),
                     Text(
-                     " $_counter",
+                      " $_counter",
                       style: TextStyle(
-                          fontSize: 20.0,
+                        fontSize: 20.0,
                         color: Colors.black,
-
-
                       ),
-
                     ),
-                    IconButton(icon: Icon(Icons.remove_circle),
-                        color: Colors.red.shade600  ,
+                    IconButton(
+                        icon: Icon(Icons.remove_circle),
+                        color: Colors.red.shade600,
                         iconSize: 30,
                         onPressed: _decrementCounter),
                   ],
                 ),
                 SizedBox(height: 15.0),
-              _size_list(),
+                _size_list(_food.dispriceDate),
                 SizedBox(height: 25.0),
                 _childfoods_descreption(_food.detiles),
                 SizedBox(height: 15.0),
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -161,47 +157,48 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
 
   void _decrementCounter() {
     setState(() {
-      if (_counter != 0)
-        _counter--;
+      if (_counter != 0) _counter--;
     });
   }
 
-  _addtocard() {
+  _addtocard() {}
 
-  }
-
-  _size_list() {
-    return   Column(
+  _size_list(date) {
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-          padding: EdgeInsets.only(right: 10,left: 10),
+          padding: EdgeInsets.only(right: 10, left: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _discounttimer("12:30:00"),
-              Text("سایز",style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey.shade700,
-
-              ),),
+              _discounttimer(date),
+              Text(
+                "سایز",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey.shade700,
+                ),
+              ),
             ],
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         Container(
           decoration: BoxDecoration(
-           border: Border.all(
-             color: Colors.grey.shade200
-           ),
-    borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(color: Colors.grey.shade200),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           alignment: Alignment.center,
           height: 60,
           child: SizeChildFoodsList(),
         ),
-        SizedBox(height: 10,)
+        SizedBox(
+          height: 10,
+        )
       ],
     );
   }
@@ -211,7 +208,9 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
       alignment: Alignment.topRight,
       height: 150.0,
       child: SingleChildScrollView(
-        child: Text(descrep,  style: TextStyle(
+        child: Text(
+          descrep,
+          style: TextStyle(
             color: Colors.black54,
           ),
         ),
@@ -236,21 +235,19 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
           style: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
-              color: Colors.grey.shade600
-          ),
+              color: Colors.grey.shade600),
           textAlign: TextAlign.center,
         ),
       ],
     );
   }
 
-  _childfoods_discPrince(String oldprice,String newprice) {
-
-    if(newprice!="False")
+  _childfoods_discPrince(String oldprice, String newprice) {
+    if (newprice == "False")
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 30),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(
-          oldprice+" "+"IQ",
+          oldprice + " " + "IQ",
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -260,11 +257,11 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
       );
     else
       return Padding(
-        padding: const EdgeInsets.only(left: 10,top: 30),
+        padding: const EdgeInsets.only(left: 10, top: 30),
         child: Column(
           children: [
             Text(
-              newprice+" "+"IQ",
+              newprice + " " + "IQ",
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 20.0,
@@ -274,13 +271,12 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
             ),
             SizedBox(height: 10.0),
             Text(
-              oldprice+" "+"IQ",
+              oldprice + " " + "IQ",
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.lineThrough,
                 color: Colors.grey.shade600,
-
               ),
               textAlign: TextAlign.center,
             ),
@@ -292,12 +288,16 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
   _discounttimer(String time) {
     return Row(
       children: [
-        Text(time,style: TextStyle(fontSize :16,color: Colors.green.shade600),
+        Text(
+          time,
+          style: TextStyle(fontSize: 16, color: Colors.green.shade600),
         ),
-        Icon(Icons.timer,color: Colors.blueAccent,size: 20,),
-
+        Icon(
+          Icons.timer,
+          color: Colors.blueAccent,
+          size: 20,
+        ),
       ],
     );
   }
-
-  }
+}

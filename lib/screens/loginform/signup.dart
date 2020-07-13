@@ -1,3 +1,8 @@
+import 'dart:collection';
+
+import 'package:fast_food/screens/main_screen.dart';
+import 'package:fast_food/utilty/customerAPI.dart';
+import 'package:fast_food/utilty/util.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'Widget/bezierContainer.dart';
@@ -14,39 +19,49 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
-
-
+  HashMap<String, String> requestsMap = new HashMap();
   Future<File> imageFile;
+  final username = TextEditingController();
+  final password = TextEditingController();
+  final email = TextEditingController();
+  final phone = TextEditingController();
+  final key = new GlobalKey<ScaffoldState>();
+  var customerAPI = new CustomerAPI();
 
+  String file;
 
   pickImageFromGellry(ImageSource source) {
     setState(() {
       imageFile = ImagePicker.pickImage(source: source);
     });
-
   }
 
   Widget ShowImges() {
     return FutureBuilder<File>(
       future: imageFile,
-        builder: (BuildContext context,AsyncSnapshot<File>snapshot){
-        if(snapshot.connectionState == ConnectionState.done &&
-        snapshot.data !=null){
-          return   Container(
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          file = snapshot.data.path;
+          return Container(
             padding: EdgeInsets.all(1),
-            child: CircleAvatar(backgroundImage: new FileImage(snapshot.data,),radius: 70,
+            child: CircleAvatar(
+              backgroundImage: new FileImage(
+                snapshot.data,
+              ),
+              radius: 70,
             ),
           );
-
-        }else{
-          return const Text("هیچ وێنەیەک دیاری نەکرا!",
+        } else {
+          return const Text(
+            "هیچ وێنەیەک دیاری نەکرا!",
             textAlign: TextAlign.center,
           );
         }
-        },
+      },
     );
   }
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -62,14 +77,14 @@ class _SignUpPageState extends State<SignUpPage> {
               padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
               child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
-
           ],
         ),
       ),
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _entryField(String title, TextEditingController controll,
+      {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -82,7 +97,8 @@ class _SignUpPageState extends State<SignUpPage> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
+              controller: controll,
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -111,11 +127,44 @@ class _SignUpPageState extends State<SignUpPage> {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: Text(
-        'تۆمارکردن',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: FlatButton(
+          child: Text(
+            'تۆمارکردن',
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+          onPressed: () {
+            if (file != null) {
+              requestsMap['name'] = username.text;
+              requestsMap['email'] = email.text;
+              requestsMap['phone'] = phone.text;
+              requestsMap['password'] = password.text;
+              requestsMap['phoneid'] = phoneid;
+              requestsMap['filename'] = file;
+              requestsMap['instrument_purchase'] = "Unknown";
+              requestsMap['house_no'] = "Unknown";
+              requestsMap['address_line1'] = "Unknown";
+              requestsMap['address_line2'] = "Unknown";
+              requestsMap['zip_code'] = "Unknown";
+              requestsMap['country'] = "Unknown";
+              customerAPI
+                  .insertDataTransForm(requestsMap, key)
+                  .then((value) => push(value));
+            }
+          },
+        ),
       ),
     );
+  }
+
+  push(bool resp) {
+    if (resp) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainScreen()),
+      );
+    }
   }
 
   Widget _loginAccountLabel() {
@@ -152,7 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _userImage(String userImagepath) {
-    return   Container(
+    return Container(
       padding: EdgeInsets.all(10),
       child: CircleAvatar(
         child: Stack(
@@ -161,7 +210,10 @@ class _SignUpPageState extends State<SignUpPage> {
             Positioned(
               bottom: 0,
               child: IconButton(
-                icon: Icon(Icons.camera_alt,color: Colors.amber,),
+                icon: Icon(
+                  Icons.camera_alt,
+                  color: Colors.amber,
+                ),
                 onPressed: () {
                   pickImageFromGellry(ImageSource.gallery);
                 },
@@ -177,21 +229,21 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("ناو"),
-        _entryField("ئیمەیڵ"),
-        _entryField("ژ.مۆبایل"),
-        _entryField("وشەی تئێپەڕ", isPassword: true),
+        _entryField("ناو", username),
+        _entryField("ئیمەیڵ", email),
+        _entryField("ژ.مۆبایل", phone),
+        _entryField("وشەی تئێپەڕ", password, isPassword: true),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
     final height = MediaQuery.of(context).size.height;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        key: key,
         body: Container(
           height: height,
           child: Stack(
@@ -231,6 +283,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-
-
 }
