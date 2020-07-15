@@ -29,6 +29,7 @@ dependencies:
   google_fonts: ^0.3.5
   image_picker: ^0.6.7+3
   device_id: ^0.2.0
+  flappy_search_bar: 1.4.1
 
 
 
