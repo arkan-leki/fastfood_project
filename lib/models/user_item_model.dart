@@ -1,5 +1,3 @@
-
-
 class UserModel {
   String firstname;
   String secondname;

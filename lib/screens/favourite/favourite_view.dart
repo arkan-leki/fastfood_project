@@ -1,7 +1,6 @@
-import 'package:fast_food/screens/Drawer/drawer_list.dart';
-import 'package:fast_food/screens/main_screen.dart';
 import 'package:fast_food/screens/mycard/mycard_view.dart';
 import 'package:flutter/material.dart';
+
 import 'favourite_list.dart';
 
 class FavouritsView extends StatefulWidget {

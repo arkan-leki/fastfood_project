@@ -7,7 +7,8 @@ class ChildFoodsListView extends StatelessWidget {
   final String catId;
 
   const ChildFoodsListView(
-    this.title, this.catId, {
+    this.title,
+    this.catId, {
     Key key,
   }) : super(key: key);
 

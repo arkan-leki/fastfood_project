@@ -1,13 +1,14 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:fast_food/screens/main_screen.dart';
 import 'package:fast_food/utilty/customerAPI.dart';
 import 'package:fast_food/utilty/util.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 import 'Widget/bezierContainer.dart';
 import 'loginPage.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);

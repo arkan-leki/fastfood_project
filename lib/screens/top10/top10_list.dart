@@ -1,8 +1,6 @@
-import 'package:fast_food/models/childfoods_model.dart';
 import 'package:fast_food/models/foods.dart';
 import 'package:fast_food/screens/childfoods/childfoods_view.dart';
 import 'package:fast_food/screens/top10/top10_items.dart';
-import 'package:fast_food/utilty/axis.dart';
 import 'package:fast_food/utilty/foodsAPI.dart';
 import 'package:flutter/material.dart';
 

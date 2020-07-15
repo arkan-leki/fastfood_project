@@ -1,5 +1,3 @@
-
-
 var apibse = "https://sultan-delivery-v1.herokuapp.com/api/";
 var catapi = "cats/?format=json";
 var foodapi = "foods/?format=json";

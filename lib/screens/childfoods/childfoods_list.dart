@@ -17,6 +17,7 @@ class ChildFoodsList extends StatefulWidget {
 
 class _ChildFoodsListState extends State<ChildFoodsList> {
   String catId;
+
   _ChildFoodsListState(this.catId);
 
   FoodAPI _foodAPI = FoodAPI();
