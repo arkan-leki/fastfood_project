@@ -243,7 +243,7 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
   }
 
   _childfoods_discPrince(String oldprice, String newprice) {
-    if (newprice == "False")
+    if (newprice == "false")
       return Padding(
         padding: const EdgeInsets.only(left: 10, top: 30),
         child: Text(
