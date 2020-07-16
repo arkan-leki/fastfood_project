@@ -9,4 +9,6 @@ var customerApi = "customers/?format=json";
 var requestz = "requestz/?format=json";
 var phoneid = '';
 var catlist;
+var warIdAPI = '';
+var logined = '';
 var whoreapi = "bnka/?format=json";

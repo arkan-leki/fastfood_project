@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 Container(
-                  height: 360.0,
+                  height: 400.0,
                   width: double.infinity,
                   child: DiscountChildFoodsList(),
                 ),
@@ -165,13 +165,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
       ],
-    );
-  }
-
-  _title() {
-    return TextStyle(
-      fontSize: 22,
-      color: Colors.amber,
     );
   }
 }

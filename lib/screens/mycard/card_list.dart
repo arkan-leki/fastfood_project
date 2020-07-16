@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'card_item.dart';
 
+// ignore: must_be_immutable
 class CardList extends StatelessWidget {
   List<ChildFoodsModel> list = new List();
 

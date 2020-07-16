@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'favourite_items.dart';
 
+// ignore: must_be_immutable
 class FavouritesList extends StatelessWidget {
 //  List<ChildFoodsModel> list = new List();
   FoodAPI _foodAPI = FoodAPI();

@@ -10,6 +10,8 @@ class WhorehouseAPI {
   Future fetchalldata() async {
     String allCatAPI = apibse + whoreapi;
     List<Whorehouse> list = List<Whorehouse>();
+    list.add(Whorehouse('', 'هەموو',
+       'False', '100' ));
 
     var response = await http.get(allCatAPI);
     if (response.statusCode == 200) {

@@ -1,5 +1,6 @@
 import 'package:fast_food/models/whorehouse.dart';
-import 'package:fast_food/screens/home_screen.dart';
+import 'package:fast_food/screens/main_screen.dart';
+import 'package:fast_food/utilty/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class WhereHouseItem extends StatelessWidget {
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: new DecorationImage(
-                image: new Image.network(model.image).image,
+                image: model.image=="False"? new AssetImage('assets/images/all.png') : new Image.network(model.image).image,
                 fit: BoxFit.cover,
               )),
           child: ListTile(
@@ -29,9 +30,10 @@ class WhereHouseItem extends StatelessWidget {
               child: Text(model.items),
             ),
             onTap: () {
+              warIdAPI = model.id.toString();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => MainScreen()),
               );
             },
           ),

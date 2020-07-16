@@ -1,7 +1,8 @@
 import 'package:fast_food/screens/loginform/signup.dart';
+import 'package:fast_food/screens/main_screen.dart';
+import 'package:fast_food/utilty/customerAPI.dart';
 import 'package:flutter/material.dart';
 
-import '../main_screen.dart';
 import 'Widget/bezierContainer.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,7 +15,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Widget _entryField(String title, {bool isPassword = false}) {
+  final email = TextEditingController();
+  final password = TextEditingController();
+  final key = new GlobalKey<ScaffoldState>();
+
+  bool _isLoading = false;
+
+  Widget _entryField(String title, TextEditingController controller,
+      {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -28,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             height: 10,
           ),
           TextField(
+              controller: controller,
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -59,18 +68,48 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: FlatButton(
-            child: Text(
-              'چوونە ژوورەوە',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MainScreen()),
-              );
-            },
+            child: _isLoading
+                ? CircularProgressIndicator()
+                : Text(
+                    'چوونە ژوورەوە',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+            onPressed: _submit,
           ),
         ));
+  }
+
+  Future<void> _submit() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await Future.delayed(Duration(seconds: 2));
+    new CustomerAPI().login(email.text, password.text).then((user) {
+      onLoginSuccess(user);
+    });
+  }
+
+  void onLoginSuccess(dynamic user) async {
+    if (user != null) {
+      _showSnackBar("چونەژوورەوە");
+      new CustomerAPI().update(user.id).whenComplete(() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MainScreen()),
+        );
+        setState(() => _isLoading = false);
+      });
+    } else {
+      _showSnackBar(
+          "ئەم ئیمەیڵە نەدۆزرایەوە یان دوبارە هەموو خانەکان پڕبکەرەوە");
+      setState(() => _isLoading = false);
+    }
+  }
+
+  _showSnackBar(String s) {
+    key.currentState.showSnackBar(new SnackBar(
+      content: new Text(s),
+    ));
   }
 
   Widget _divider() {
@@ -263,8 +302,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("ئیمەیڵ"),
-        _entryField("وشەی تێپەڕ", isPassword: true),
+        _entryField("ئیمەیڵ", email),
+        _entryField("وشەی تێپەڕ", password, isPassword: true),
       ],
     );
   }
@@ -275,46 +314,47 @@ class _LoginPageState extends State<LoginPage> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+          key: key,
           body: Container(
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-                top: -height * .15,
-                right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer()),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _logo("assets/images/logoLogin.png"),
-                    SizedBox(height: 50),
-                    _emailPasswordWidget(),
-                    SizedBox(height: 20),
-                    _submitButton(),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      alignment: Alignment.centerRight,
-                      child: Text('وشەی تێپەرت لەبیرکردووە؟',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500)),
+            height: height,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                    top: -height * .15,
+                    right: -MediaQuery.of(context).size.width * .4,
+                    child: BezierContainer()),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(height: height * .2),
+                        _logo("assets/images/logoLogin.png"),
+                        SizedBox(height: 50),
+                        _emailPasswordWidget(),
+                        SizedBox(height: 20),
+                        _submitButton(),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          alignment: Alignment.centerRight,
+                          child: Text('وشەی تێپەرت لەبیرکردووە؟',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500)),
+                        ),
+                        _divider(),
+                        _facebookButton(),
+                        _googleButton(),
+                        SizedBox(height: height * .055),
+                        _createAccountLabel(),
+                      ],
                     ),
-                    _divider(),
-                    _facebookButton(),
-                    _googleButton(),
-                    SizedBox(height: height * .055),
-                    _createAccountLabel(),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      )),
+          )),
     );
   }
 }

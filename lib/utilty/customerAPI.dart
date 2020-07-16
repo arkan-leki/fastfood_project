@@ -23,13 +23,44 @@ class CustomerAPI {
     if (response.statusCode == 201) {
       return true;
     } else {
-      var data = convert.jsonDecode(utf8.decode(response.bodyBytes));
+//      var data = convert.jsonDecode(utf8.decode(response.bodyBytes));
       key.currentState.showSnackBar(new SnackBar(
         content: new Text(
             "ئەم ئیمەیڵە پێشتر بەکار هاتووە یان دوبارە هەموو خانەکان پڕبکەرەوە"),
       ));
       return false;
     }
+  }
+
+  Future<UserModel> login(String email, String pass) async {
+    String allCatAPI = apibse + customerApi;
+    UserModel cat ;
+    print(email+" "+pass);
+    var response = await http.get(allCatAPI);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
+      for (var data in jsonResponse) {
+        if(data['email'].toString()==email && data['password'].toString()==pass) {
+          cat = new UserModel(
+            data['id'].toString(),
+            data['name'].toString(),
+            data['password'].toString(),
+            data['instrument_purchase'].toString(),
+            data['house_no'].toString(),
+            data['address_line1'].toString(),
+            data['address_line2'].toString(),
+            data['phone'].toString(),
+            data['phoneid'].toString(),
+            data['country'].toString(),
+            data['image'].toString(),
+            data['email'].toString(),
+          );
+        }
+      }
+      if (response.statusCode != 200)
+        return Future.error("error: status code ${response.statusCode}");
+    }
+    return cat;
   }
 
   Future fetchalldataById() async {
@@ -57,7 +88,21 @@ class CustomerAPI {
         );
         foods.add(cat);
       }
+      if (response.statusCode != 200)
+        return Future.error("error: status code ${response.statusCode}");
     }
     return foods;
+  }
+
+  Future<bool> update(id) async {
+    final baseUrl = apibse;
+    final url = Uri.parse(baseUrl + "customers/$id/");
+    HashMap<String, dynamic> requestsMap = new HashMap();
+    requestsMap['phoneid'] = phoneid;
+    var response = await http.patch(url, body: requestsMap);
+    if (response.statusCode == 200)
+      return true;
+    else
+      return false;
   }
 }

@@ -44,7 +44,8 @@ class _UserState extends State<User> {
               future: _userAPI.fetchalldataById(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData) {
+                    snapshot.hasData &&
+                    snapshot.data != '[]') {
                   print(snapshot.data[0]);
                   UserModel userModel = snapshot.data[0];
                   return Column(
@@ -126,7 +127,6 @@ class _UserState extends State<User> {
                 } else if (snapshot.hasError) {
                   throw snapshot.error;
                 }
-                // By default, show a loading spinner.
                 return CircularProgressIndicator();
               },
             ),

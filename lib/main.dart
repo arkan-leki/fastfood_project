@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   String _deviceid = 'Unknown';

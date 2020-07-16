@@ -1,4 +1,5 @@
 import 'package:fast_food/models/foods.dart';
+import 'package:fast_food/utilty/axis.dart';
 import 'package:fast_food/utilty/foodsAPI.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _ChildFoodsListState extends State<ChildFoodsList> {
               snapshot.hasData) {
             return ListView.builder(
                 itemCount: snapshot.data.length,
-                scrollDirection: Axis.vertical,
+                scrollDirection: axis,
                 itemBuilder: (context, index) {
                   Food food = snapshot.data[index];
                   return new ChildFoodsItem(food);

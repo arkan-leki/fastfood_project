@@ -8,7 +8,7 @@ import 'util.dart';
 
 class CatAPI {
   Future fetchalldata() async {
-    String allCatAPI = apibse + catapi;
+    String allCatAPI = apibse + catapi + "&war=$warIdAPI";
     List<Cat> cats = List<Cat>();
 
     var response = await http.get(allCatAPI);

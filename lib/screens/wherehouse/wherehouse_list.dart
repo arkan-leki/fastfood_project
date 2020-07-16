@@ -4,20 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'wherehouse_items.dart';
 
+// ignore: must_be_immutable
 class WhereHouseList extends StatelessWidget {
   WhorehouseAPI _foodAPI = WhorehouseAPI();
 
   @override
   Widget build(BuildContext context) {
-//    return ListView.builder(
-//      scrollDirection: Axis.horizontal,
-//      itemCount: list.length,
-//      itemBuilder: (BuildContext context, int index) {
-//        WhereHouseModel itemModel= list[index];
-//        return  WhereHouseItem(itemModel);
-//      },
-//    );
-
     return Center(
       child: FutureBuilder(
         future: _foodAPI.fetchalldata(),

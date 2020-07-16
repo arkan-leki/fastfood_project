@@ -20,10 +20,6 @@ class _DiscountChildFoodsViewAsVerticalListState
     super.initState();
   }
 
-  void _filterCountries(value) {
-    setState(() {});
-  }
-
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -44,7 +40,7 @@ class _DiscountChildFoodsViewAsVerticalListState
         drawer: DrawerList(),
         body: Container(
             padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
-            child: DiscountChildFoodsList()),
+            child: DiscountChildFoodsList(true)),
       ),
     );
   }
