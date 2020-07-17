@@ -63,6 +63,38 @@ class CustomerAPI {
     return cat;
   }
 
+  Future check(String phoneId) async {
+    String allCatAPI = apibse + customerApi + "&phoneid=$phoneId";
+    print(allCatAPI);
+    List foods = List<UserModel>();
+
+    var response = await http.get(allCatAPI);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
+      for (var data in jsonResponse) {
+        UserModel cat = new UserModel(
+          data['id'].toString(),
+          data['name'].toString(),
+          data['password'].toString(),
+          data['instrument_purchase'].toString(),
+          data['house_no'].toString(),
+          data['address_line1'].toString(),
+          data['address_line2'].toString(),
+          data['phone'].toString(),
+          data['phoneid'].toString(),
+          data['country'].toString(),
+          data['image'].toString(),
+          data['email'].toString(),
+        );
+        foods.add(cat);
+      }
+      if (response.statusCode != 200)
+        return Future.error("error: status code ${response.statusCode}");
+    }
+    return foods;
+  }
+
+
   Future fetchalldataById() async {
     String allCatAPI = apibse + customerApi + "&phoneid=$phoneid";
     print(allCatAPI);

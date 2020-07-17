@@ -45,8 +45,7 @@ class _UserState extends State<User> {
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasData &&
-                    snapshot.data != '[]') {
-                  print(snapshot.data[0]);
+                    snapshot.data.length != 0) {
                   UserModel userModel = snapshot.data[0];
                   return Column(
                     children: [
@@ -127,7 +126,7 @@ class _UserState extends State<User> {
                 } else if (snapshot.hasError) {
                   throw snapshot.error;
                 }
-                return CircularProgressIndicator();
+                return Text("Login Please");
               },
             ),
           ),
