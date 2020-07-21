@@ -54,6 +54,7 @@ class CustomerAPI {
             data['country'].toString(),
             data['image'].toString(),
             data['email'].toString(),
+            data['fav_user'],
           );
         }
       }
@@ -85,6 +86,7 @@ class CustomerAPI {
           data['country'].toString(),
           data['image'].toString(),
           data['email'].toString(),
+          data['fav_user'],
         );
         foods.add(cat);
       }
@@ -117,6 +119,7 @@ class CustomerAPI {
           data['country'].toString(),
           data['image'].toString(),
           data['email'].toString(),
+          data['fav_user'],
         );
         foods.add(cat);
       }

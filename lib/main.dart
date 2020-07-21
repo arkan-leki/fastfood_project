@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
+            CurrentUser = snapshot.data[0];
+            fav_user = CurrentUser.fav_user;
+            print(fav_user);
             if (snapshot.data.length != 0) {
               return MaterialApp(
                 title: "Fast Food",

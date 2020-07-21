@@ -48,7 +48,8 @@ class FoodAPI {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
       for (var data in jsonResponse) {
         if (data['isDispriced'] == true) {
-          if(warIdAPI!=''&&data['category_war'].toString()==warIdAPI.toString()) {
+          if (warIdAPI != '' &&
+              data['category_war'].toString() == warIdAPI.toString()) {
             Food cat = new Food(
               data['id'].toString(),
               data['category'].toString(),
@@ -68,7 +69,7 @@ class FoodAPI {
               data['dispriceDate'].toString(),
             );
             foods.add(cat);
-          }else if(warIdAPI==''){
+          } else if (warIdAPI == '') {
             Food cat = new Food(
               data['id'].toString(),
               data['category'].toString(),
@@ -103,7 +104,8 @@ class FoodAPI {
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
       for (var data in jsonResponse) {
-        if(warIdAPI!=''&&data['category_war'].toString()==warIdAPI.toString()) {
+        if (warIdAPI != '' &&
+            data['category_war'].toString() == warIdAPI.toString()) {
           Food cat = new Food(
             data['id'].toString(),
             data['category'].toString(),
@@ -123,7 +125,7 @@ class FoodAPI {
             data['dispriceDate'].toString(),
           );
           foods.add(cat);
-        }else if(warIdAPI==''){
+        } else if (warIdAPI == '') {
           Food cat = new Food(
             data['id'].toString(),
             data['category'].toString(),
@@ -209,6 +211,43 @@ class FoodAPI {
           data['dispriceDate'].toString(),
         );
         foods.add(cat);
+      }
+    }
+    return foods;
+  }
+
+  fetchalldataFav() async {
+    await Future.delayed(Duration(seconds: 2));
+    String allCatAPI = apibse + foodapi;
+    List foods = List<Food>();
+
+    var response = await http.get(allCatAPI);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
+      for (var data in jsonResponse) {
+        if (fav_user.contains(data['id'])) {
+          Food cat = new Food(
+            data['id'].toString(),
+            data['category'].toString(),
+            data['categoryWar'],
+            data['image'],
+            data['sell_price'],
+            data['title'],
+            data['subtitle'],
+            data['detiles'],
+            data['dateAdd'],
+            data['popularity'],
+            data['avg_ratings'].toString() == "null"
+                ? "0"
+                : data['avg_ratings'],
+            data['deleted'],
+            data['isDispriced'],
+            data['disprice'].toString(),
+            data['dispriceTitle'].toString(),
+            data['dispriceDate'].toString(),
+          );
+          foods.add(cat);
+        }
       }
     }
     return foods;

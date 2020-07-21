@@ -1,7 +1,9 @@
 import 'package:fast_food/models/foods.dart';
+import 'package:fast_food/utilty/favAPI.dart';
+import 'package:fast_food/utilty/util.dart';
 import 'package:flutter/material.dart';
 
-class Top10Item extends StatelessWidget {
+class Top10Item extends StatefulWidget {
   // final ChildFoodsModel model;
   final Food food;
 
@@ -10,6 +12,11 @@ class Top10Item extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  @override
+  _Top10ItemState createState() => _Top10ItemState();
+}
+
+class _Top10ItemState extends State<Top10Item> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +43,7 @@ class Top10Item extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                     image: DecorationImage(
-                        image: Image.network(food.image).image,
+                        image: Image.network(widget.food.image).image,
                         fit: BoxFit.cover)),
               ),
               Positioned(
@@ -45,11 +52,22 @@ class Top10Item extends StatelessWidget {
                 child: CircleAvatar(
                     backgroundColor: Colors.grey.withOpacity(0.7),
                     radius: 25.0,
-                    child: IconButton(
-                        icon: Icon(Icons.favorite_border),
-                        color: Colors.white,
-                        iconSize: 30,
-                        onPressed: () => print("favorite_border"))),
+                    child: fav_user.contains(int.parse(widget.food.id))
+                        ? IconButton(
+                            icon: Icon(Icons.favorite),
+                            color: Colors.red,
+                            iconSize: 30,
+                            onPressed: () => print("favorite_border"))
+                        : IconButton(
+                            icon: Icon(Icons.favorite_border),
+                            color: Colors.white,
+                            iconSize: 30,
+                            onPressed: () {
+                              setState(() {
+                                fav_user.add(int.parse(widget.food.id));
+                                FavAPI().addFav(widget.food.id);
+                              });
+                            })),
               ),
             ],
           ),
@@ -57,7 +75,7 @@ class Top10Item extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-            food.title,
+            widget.food.title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               //fontFamily: 'lato',
@@ -71,7 +89,7 @@ class Top10Item extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              food.subtitle,
+              widget.food.subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.0,
@@ -103,7 +121,7 @@ class Top10Item extends StatelessWidget {
                   width: 5.0,
                 ),
                 Text(
-                  '${food.price}',
+                  '${widget.food.price}',
                   style: TextStyle(
                     color: Color(0xFFFFCA60),
                     fontSize: 30.0,
@@ -116,5 +134,10 @@ class Top10Item extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  push() {
+    setState(() {
+    });
   }
 }

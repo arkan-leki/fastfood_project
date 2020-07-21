@@ -11,6 +11,7 @@ class UserModel {
   String country;
   String image;
   String email;
+  List<dynamic> fav_user;
 
   UserModel(
       this.id,
@@ -24,5 +25,6 @@ class UserModel {
       this.phoneId,
       this.country,
       this.image,
-      this.email);
+      this.email,
+      this.fav_user);
 }

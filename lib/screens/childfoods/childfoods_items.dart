@@ -1,5 +1,7 @@
 import 'package:fast_food/models/foods.dart';
 import 'package:fast_food/screens/childfoods/childfoods_view.dart';
+import 'package:fast_food/utilty/favAPI.dart';
+import 'package:fast_food/utilty/util.dart';
 import 'package:flutter/material.dart';
 
 class ChildFoodsItem extends StatefulWidget {
@@ -77,11 +79,17 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                         CircleAvatar(
                             backgroundColor: Colors.grey.withOpacity(0.7),
                             radius: 25.0,
-                            child: IconButton(
-                                icon: Icon(Icons.favorite_border),
-                                color: Colors.white,
-                                iconSize: 30,
-                                onPressed: () => print("favorite_border"))),
+                            child: fav_user.contains(_food.id)
+                                ? IconButton(
+                                    icon: Icon(Icons.favorite),
+                                    color: Colors.red,
+                                    iconSize: 30,
+                                    onPressed: () => print("favorite_border"))
+                                : IconButton(
+                                    icon: Icon(Icons.favorite_border),
+                                    color: Colors.white,
+                                    iconSize: 30,
+                                    onPressed: () => FavAPI().addFav(_food.id))),
                       ],
                     ),
                   ],
