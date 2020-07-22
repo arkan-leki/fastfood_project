@@ -79,17 +79,22 @@ class _ChildFoodsItemState extends State<ChildFoodsItem> {
                         CircleAvatar(
                             backgroundColor: Colors.grey.withOpacity(0.7),
                             radius: 25.0,
-                            child: fav_user.contains(_food.id)
+                            child: fav_user.contains(int.parse(_food.id))
                                 ? IconButton(
-                                    icon: Icon(Icons.favorite),
-                                    color: Colors.red,
-                                    iconSize: 30,
-                                    onPressed: () => print("favorite_border"))
+                                icon: Icon(Icons.favorite),
+                                color: Colors.red,
+                                iconSize: 30,
+                                onPressed: () => print("favorite_border"))
                                 : IconButton(
-                                    icon: Icon(Icons.favorite_border),
-                                    color: Colors.white,
-                                    iconSize: 30,
-                                    onPressed: () => FavAPI().addFav(_food.id))),
+                                icon: Icon(Icons.favorite_border),
+                                color: Colors.white,
+                                iconSize: 30,
+                                onPressed: () {
+                                  setState(() {
+                                    fav_user.add(int.parse(_food.id));
+                                    FavAPI().addFav(_food.id);
+                                  });
+                                })),
                       ],
                     ),
                   ],

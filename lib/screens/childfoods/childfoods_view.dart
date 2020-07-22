@@ -1,4 +1,6 @@
 import 'package:fast_food/models/foods.dart';
+import 'package:fast_food/utilty/favAPI.dart';
+import 'package:fast_food/utilty/util.dart';
 import 'package:fast_food/widgets/circular_clipper.dart';
 import 'package:flutter/material.dart';
 
@@ -63,20 +65,22 @@ class _ChildFoodsViewState extends State<ChildFoodsView> {
                   CircleAvatar(
                       backgroundColor: Colors.grey.withOpacity(0.7),
                       radius: 25.0,
-                      child: IconButton(
-                        icon: Icon(Icons.favorite_border),
-                        color: Colors.white,
-                        iconSize: 30,
-                        onPressed: () {
-                          /*
-                          if( ids.contains( position ) ){
-                            ids.remove(position);
-                          }else{
-                            ids.add(position);
-                          }*/
-                        },
-                        // color: ( ids.contains(position) ) ? Colors.white : Colors.red,
-                      )),
+                      child: fav_user.contains(int.parse(widget.food.id))
+                          ? IconButton(
+                          icon: Icon(Icons.favorite),
+                          color: Colors.red,
+                          iconSize: 30,
+                          onPressed: () => print("favorite_border"))
+                          : IconButton(
+                          icon: Icon(Icons.favorite_border),
+                          color: Colors.white,
+                          iconSize: 30,
+                          onPressed: () {
+                            setState(() {
+                              fav_user.add(int.parse(widget.food.id));
+                              FavAPI().addFav(widget.food.id);
+                            });
+                          })),
                 ],
               ),
               Positioned(
